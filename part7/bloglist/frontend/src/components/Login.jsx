@@ -1,13 +1,13 @@
 import { useState } from 'react'
 
 import Notification from './Notification'
-import useNotify from '../hooks/useNotify'
+import useNotification from '../hooks/useNotification'
 
 const Login = ({ login }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
-  const notify = useNotify()
+  const { notify } = useNotification()
 
   const handleLogin = async (event) => {
     event.preventDefault()

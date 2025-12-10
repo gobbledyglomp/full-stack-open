@@ -1,12 +1,12 @@
 import { useState } from 'react'
 
 import blogService from '../services/blogs'
-import useNotify from '../hooks/useNotify'
+import useNotification from '../hooks/useNotification'
 
 const Blog = ({ blog, updateBlog, deleteBlog, currentUser }) => {
   const [toggled, setToggled] = useState(false)
 
-  const notify = useNotify()
+  const { notify } = useNotification()
 
   // Handlers
   const handleLike = async (event) => {

@@ -1,6 +1,11 @@
 import Blog from './Blog'
+import Loading from './Loading'
 
-const BlogList = ({ blogs, setBlogs, currentUser }) => {
+import useBlogs from '../hooks/useBlogs'
+
+const BlogList = ({ currentUser }) => {
+  const { blogs } = useBlogs()
+
   const updateBlog = (updatedBlog) => {
     const updatedBlogs = blogs.map((blog) => {
       if (blog.id === updatedBlog.id) {
@@ -8,20 +13,21 @@ const BlogList = ({ blogs, setBlogs, currentUser }) => {
       }
       return blog
     })
-    setBlogs(updatedBlogs)
+    // setBlogs(updatedBlogs)
   }
 
   const deleteBlog = (deletedBlog) => {
     const updatedBlogs = blogs.filter((blog) => blog.id !== deletedBlog.id)
-    setBlogs(updatedBlogs)
+    // setBlogs(updatedBlogs)
   }
 
   // Render
-  if (!blogs) return <Loading />
+  if (blogs.length === 0) return <Loading />
 
   return (
     <div>
       {blogs
+        .slice()
         .sort((a, b) => b.likes - a.likes)
         .map((blog) => (
           <Blog

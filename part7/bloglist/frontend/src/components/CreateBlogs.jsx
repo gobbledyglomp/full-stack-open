@@ -1,28 +1,29 @@
 import { useState } from 'react'
 
-import useNotify from '../hooks/useNotify'
+import useNotification from '../hooks/useNotification'
+import useBlogs from '../hooks/useBlogs'
 
-const CreateBlogs = ({ addBlog }) => {
+const CreateBlogs = () => {
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [url, setUrl] = useState('')
 
-  const notify = useNotify()
+  const { notify } = useNotification()
+  const { addBlog } = useBlogs()
 
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      await addBlog({ title, author, url })
+      await addBlog({ title, author, url }).unwrap()
       notify('INFO', `New blog "${title}" by ${author} added`)
       setTitle('')
       setAuthor('')
       setUrl('')
     } catch (error) {
-      notify('ERROR', error.response.data.error || error.message)
+      notify('ERROR', error.message)
     }
   }
 
-  // Render
   return (
     <div>
       <h2>Create new</h2>
