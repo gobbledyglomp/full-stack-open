@@ -1,21 +1,21 @@
 import { useState } from 'react'
 
-import blogService from '../services/blogs'
 import useNotification from '../hooks/useNotification'
+import useBlogs from '../hooks/useBlogs'
 
-const Blog = ({ blog, updateBlog, deleteBlog, currentUser }) => {
+const Blog = ({ blog, currentUser }) => {
   const [toggled, setToggled] = useState(false)
 
   const { notify } = useNotification()
+  const { likeBlog, deleteBlog } = useBlogs()
 
   // Handlers
   const handleLike = async (event) => {
     event.preventDefault()
     try {
-      const response = await blogService.like(blog)
-      updateBlog(response)
+      await likeBlog(blog)
     } catch (error) {
-      notify('ERROR', error.message)
+      notify('ERROR', error)
     }
   }
 
@@ -24,8 +24,7 @@ const Blog = ({ blog, updateBlog, deleteBlog, currentUser }) => {
     try {
       const canDelete = confirm(`Remove blog ${blog.title} by ${blog.author}`)
       if (canDelete) {
-        await blogService.deleteOne(blog)
-        deleteBlog(blog)
+        await deleteBlog(blog)
       }
     } catch (error) {
       notify('ERROR', error.message)

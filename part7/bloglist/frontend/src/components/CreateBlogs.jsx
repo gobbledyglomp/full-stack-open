@@ -14,7 +14,7 @@ const CreateBlogs = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      await addBlog({ title, author, url }).unwrap()
+      await addBlog({ title, author, url })
       notify('INFO', `New blog "${title}" by ${author} added`)
       setTitle('')
       setAuthor('')

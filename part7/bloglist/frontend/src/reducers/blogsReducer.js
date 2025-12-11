@@ -16,7 +16,31 @@ export const addBlog = createAsyncThunk(
       })
       return response
     } catch (error) {
-      return rejectWithValue(error.response.data.error)
+      return rejectWithValue(error.response.data.error || error.message)
+    }
+  },
+)
+
+export const likeBlog = createAsyncThunk(
+  'blogs/likeBlog',
+  async (blog, { rejectWithValue }) => {
+    try {
+      const response = await blogService.like(blog)
+      return response
+    } catch (error) {
+      return rejectWithValue(error.response.data.error || error.message)
+    }
+  },
+)
+
+export const deleteBlog = createAsyncThunk(
+  'blogs/deleteBlog',
+  async (blog, { rejectWithValue }) => {
+    try {
+      await blogService.deleteOne(blog)
+      return blog
+    } catch (error) {
+      return rejectWithValue(error.response.data.error || error.message)
     }
   },
 )
@@ -35,6 +59,18 @@ const blogsSlice = createSlice({
       })
       .addCase(addBlog.fulfilled, (state, action) => {
         state.entities = [...state.entities, action.payload]
+      })
+      .addCase(likeBlog.fulfilled, (state, action) => {
+        const likedBlog = action.payload
+        state.entities = state.entities.map((blog) =>
+          blog.id === likedBlog.id ? likedBlog : blog,
+        )
+      })
+      .addCase(deleteBlog.fulfilled, (state, action) => {
+        const deletedBlog = action.payload
+        state.entities = state.entities.filter(
+          (blog) => blog.id !== deletedBlog.id,
+        )
       })
   },
 })
