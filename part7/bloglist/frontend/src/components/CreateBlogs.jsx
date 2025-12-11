@@ -20,7 +20,7 @@ const CreateBlogs = () => {
       setAuthor('')
       setUrl('')
     } catch (error) {
-      notify('ERROR', error.message)
+      notify('ERROR', error)
     }
   }
 

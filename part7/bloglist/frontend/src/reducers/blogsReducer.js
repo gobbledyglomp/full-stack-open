@@ -5,13 +5,21 @@ export const getBlogs = createAsyncThunk('blogs/getBlogs', async () => {
   return await blogService.getAll()
 })
 
-export const addBlog = createAsyncThunk('blogs/addBlog', async (blog) => {
-  return await blogService.create({
-    title: blog.title,
-    author: blog.author,
-    url: blog.url,
-  })
-})
+export const addBlog = createAsyncThunk(
+  'blogs/addBlog',
+  async (blog, { rejectWithValue }) => {
+    try {
+      const response = await blogService.create({
+        title: blog.title,
+        author: blog.author,
+        url: blog.url,
+      })
+      return response
+    } catch (error) {
+      return rejectWithValue(error.response.data.error)
+    }
+  },
+)
 
 const blogsSlice = createSlice({
   name: 'blogs',
