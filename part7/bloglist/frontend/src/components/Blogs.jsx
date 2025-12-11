@@ -1,10 +1,12 @@
 import { useEffect } from 'react'
+import { Routes, Route } from 'react-router-dom'
 
 import CreateBlogs from './CreateBlogs'
 import Notification from './Notification'
 import Togglable from './Togglable'
 import BlogList from './BlogList'
 import UserInfo from './UserInfo'
+import Users from './Users'
 
 import useBlogs from '../hooks/useBlogs'
 
@@ -23,7 +25,11 @@ const Blogs = () => {
       <Togglable label="Create New Blog">
         <CreateBlogs />
       </Togglable>
-      <BlogList />
+
+      <Routes>
+        <Route path="/users" element={<Users />} />
+        <Route path="/" element={<BlogList />} />
+      </Routes>
     </>
   )
 }
