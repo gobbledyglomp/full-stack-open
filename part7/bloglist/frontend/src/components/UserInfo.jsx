@@ -1,16 +1,14 @@
 import Loading from './Loading'
+import useLogin from '../hooks/useLogin'
 
-const UserInfo = ({ name }) => {
-  const logout = () => {
-    window.localStorage.removeItem('user')
-    window.location.reload()
-  }
+const UserInfo = () => {
+  const { user, logout } = useLogin()
 
-  if (!name) return <Loading />
+  if (user.username === null) return <Loading />
 
   return (
     <div style={{ marginBottom: '20px' }}>
-      {name} logged in. &nbsp;
+      {user.name} logged in. &nbsp;
       <button onClick={logout}>Logout</button>
     </div>
   )

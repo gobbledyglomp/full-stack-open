@@ -1,46 +1,28 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 
 import Blogs from './components/Blogs'
 import Login from './components/Login'
 import Loading from './components/Loading'
 
-import blogService from './services/blogs'
-import loginService from './services/login'
+import useLogin from './hooks/useLogin'
 
 const App = () => {
-  // States
-  const [user, setUser] = useState(undefined)
+  const { user, loadFromStorage } = useLogin()
 
-  // Effects
   useEffect(() => {
-    const user = window.localStorage.getItem('user')
-    if (user) {
-      const userParsed = JSON.parse(user)
-      blogService.setToken(userParsed.token)
-      setUser(userParsed)
-    } else {
-      setUser(null)
-    }
+    loadFromStorage()
   }, [])
 
-  // Functions
-  const login = async (username, password) => {
-    const user = await loginService.login({ username, password })
-    blogService.setToken(user.token)
-    window.localStorage.setItem('user', JSON.stringify(user))
-    setUser(user)
-  }
-
   // Render
-  if (user === undefined) {
+  if (user === null) {
     return <Loading />
   }
 
-  if (user === null) {
-    return <Login login={login} />
+  if (user.username === null) {
+    return <Login />
   }
 
-  return <Blogs user={user} />
+  return <Blogs />
 }
 
 export default App

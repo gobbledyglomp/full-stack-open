@@ -8,7 +8,7 @@ import UserInfo from './UserInfo'
 
 import useBlogs from '../hooks/useBlogs'
 
-const Blogs = ({ user }) => {
+const Blogs = () => {
   const { getBlogs } = useBlogs()
 
   useEffect(() => {
@@ -19,11 +19,11 @@ const Blogs = ({ user }) => {
     <>
       <h1>Blogs</h1>
       <Notification />
-      <UserInfo name={user.name} />
+      <UserInfo />
       <Togglable label="Create New Blog">
         <CreateBlogs />
       </Togglable>
-      <BlogList currentUser={user} />
+      <BlogList />
     </>
   )
 }

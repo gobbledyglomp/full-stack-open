@@ -2,12 +2,14 @@ import { useState } from 'react'
 
 import useNotification from '../hooks/useNotification'
 import useBlogs from '../hooks/useBlogs'
+import useLogin from '../hooks/useLogin'
 
-const Blog = ({ blog, currentUser }) => {
+const Blog = ({ blog }) => {
   const [toggled, setToggled] = useState(false)
 
   const { notify } = useNotification()
   const { likeBlog, deleteBlog } = useBlogs()
+  const { user } = useLogin()
 
   // Handlers
   const handleLike = async (event) => {
@@ -51,7 +53,7 @@ const Blog = ({ blog, currentUser }) => {
 
   const deleteButtonStyle = {
     marginTop: '10px',
-    display: blog.user.username === currentUser.username ? '' : 'none',
+    display: blog.user.username === user.username ? '' : 'none',
   }
 
   const descriptionStyle = {

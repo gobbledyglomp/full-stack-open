@@ -3,10 +3,10 @@ import Loading from './Loading'
 
 import useBlogs from '../hooks/useBlogs'
 
-const BlogList = ({ currentUser }) => {
+const BlogList = () => {
   const { blogs } = useBlogs()
 
-  if (blogs.length === 0) return <Loading />
+  if (blogs === null) return <Loading />
 
   return (
     <div>
@@ -14,7 +14,7 @@ const BlogList = ({ currentUser }) => {
         .slice()
         .sort((a, b) => b.likes - a.likes)
         .map((blog) => (
-          <Blog key={blog.id} blog={blog} currentUser={currentUser} />
+          <Blog key={blog.id} blog={blog} />
         ))}
     </div>
   )

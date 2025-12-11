@@ -48,7 +48,7 @@ export const deleteBlog = createAsyncThunk(
 const blogsSlice = createSlice({
   name: 'blogs',
   initialState: {
-    entities: [],
+    entities: null,
     loading: 'idle',
   },
   reducers: {},
