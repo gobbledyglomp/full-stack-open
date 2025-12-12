@@ -1,5 +1,7 @@
-import BlogItem from './BlogItem'
 import Loading from './Loading'
+import Togglable from './Togglable'
+import CreateBlogs from './CreateBlogs'
+import BlogItem from './BlogItem'
 
 import useBlogs from '../hooks/useBlogs'
 
@@ -10,6 +12,9 @@ const BlogList = () => {
 
   return (
     <div>
+      <Togglable label="Create New Blog">
+        <CreateBlogs />
+      </Togglable>
       {blogs
         .slice()
         .sort((a, b) => b.likes - a.likes)
