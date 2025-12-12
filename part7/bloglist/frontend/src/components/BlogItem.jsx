@@ -4,7 +4,7 @@ import useNotification from '../hooks/useNotification'
 import useBlogs from '../hooks/useBlogs'
 import useLogin from '../hooks/useLogin'
 
-const Blog = ({ blog }) => {
+const BlogItem = ({ blog }) => {
   const [toggled, setToggled] = useState(false)
 
   const { notify } = useNotification()
@@ -95,4 +95,4 @@ const Blog = ({ blog }) => {
   )
 }
 
-export default Blog
+export default BlogItem

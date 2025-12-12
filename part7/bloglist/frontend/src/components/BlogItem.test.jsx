@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
-import Blog from './Blog'
+import BlogItem from './BlogItem'
 
 test('blog renders title and author but not url and likes', () => {
   const blog = {
@@ -22,7 +22,7 @@ test('blog renders title and author but not url and likes', () => {
     username: 'root',
   }
 
-  render(<Blog blog={blog} currentUser={currentUser} />)
+  render(<BlogItem blog={blog} currentUser={currentUser} />)
 
   const title = screen.getByText(blog.title)
   const author = screen.getByText(blog.author, { exact: false })
@@ -54,7 +54,7 @@ test("blog's url and likes are shown when toggled", async () => {
     username: 'root',
   }
 
-  render(<Blog blog={blog} currentUser={currentUser} />)
+  render(<BlogItem blog={blog} currentUser={currentUser} />)
 
   const user = userEvent.setup()
   const button = screen.getByText('View')

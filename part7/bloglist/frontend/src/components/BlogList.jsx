@@ -1,4 +1,4 @@
-import Blog from './Blog'
+import BlogItem from './BlogItem'
 import Loading from './Loading'
 
 import useBlogs from '../hooks/useBlogs'
@@ -14,7 +14,7 @@ const BlogList = () => {
         .slice()
         .sort((a, b) => b.likes - a.likes)
         .map((blog) => (
-          <Blog key={blog.id} blog={blog} />
+          <BlogItem key={blog.id} blog={blog} />
         ))}
     </div>
   )
