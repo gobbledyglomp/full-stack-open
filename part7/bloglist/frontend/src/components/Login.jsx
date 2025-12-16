@@ -23,8 +23,8 @@ const Login = () => {
 
   return (
     <>
-      <h1>Log in to application</h1>
       <Notification />
+      <h1>Log in to application</h1>
       <form onSubmit={handleLogin}>
         <div>
           <label>

@@ -39,9 +39,9 @@ const Blog = ({ id }) => {
       const canDelete = confirm(`Remove blog ${blog.title} by ${blog.author}`)
       if (canDelete) {
         await deleteBlog(blog)
+        notify('INFO', `Blog "${blog.title}" deleted`)
+        navigate('/')
       }
-      notify('INFO', `Blog "${blog.title}" deleted`)
-      navigate('/')
     } catch (error) {
       notify('ERROR', error.message)
     }

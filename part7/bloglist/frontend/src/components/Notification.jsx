@@ -13,11 +13,10 @@ const Notification = () => {
     }`,
     borderRadius: '12px',
     padding: '10px 16px',
-    marginBottom: '10px',
+    marginTop: '15px',
     display: 'inline-block',
   }
 
-  // Render
   if (notification.queue === 0) {
     return null
   }

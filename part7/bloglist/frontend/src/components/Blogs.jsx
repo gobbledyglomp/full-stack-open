@@ -3,7 +3,7 @@ import { Routes, Route, useMatch } from 'react-router-dom'
 
 import Notification from './Notification'
 import BlogList from './BlogList'
-import UserInfo from './UserInfo'
+import NavigationMenu from './NavigationMenu'
 import Users from './Users'
 import User from './User'
 import Blog from './Blog'
@@ -25,9 +25,9 @@ const Blogs = () => {
 
   return (
     <>
-      <h1>Blogs</h1>
+      <NavigationMenu />
       <Notification />
-      <UserInfo />
+      <h1>Blog app</h1>
 
       <Routes>
         <Route path="/blogs/:id" element={<Blog id={blogIdMatched} />} />
