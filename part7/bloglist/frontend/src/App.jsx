@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import Blogs from './components/Blogs'
+import BlogApp from './components/BlogApp'
 import Login from './components/Login'
 import Loading from './components/Loading'
 
@@ -22,7 +22,7 @@ const App = () => {
     return <Login />
   }
 
-  return <Blogs />
+  return <BlogApp />
 }
 
 export default App

@@ -75,6 +75,17 @@ const Blog = ({ id }) => {
       <div style={deleteButtonStyle}>
         <button onClick={handleDeletion}>Delete</button>
       </div>
+      {/* Comments */}
+      <h3>Comments</h3>
+      {blog.comments.length === 0 ? (
+        'There is no comments'
+      ) : (
+        <ul>
+          {blog.comments.map((comment) => (
+            <li key={comment.id}>{comment.content}</li>
+          ))}
+        </ul>
+      )}
     </div>
   )
 }

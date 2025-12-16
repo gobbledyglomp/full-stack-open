@@ -10,7 +10,7 @@ import Blog from './Blog'
 
 import useBlogs from '../hooks/useBlogs'
 
-const Blogs = () => {
+const BlogApp = () => {
   const { getBlogs } = useBlogs()
 
   useEffect(() => {
@@ -39,4 +39,4 @@ const Blogs = () => {
   )
 }
 
-export default Blogs
+export default BlogApp
