@@ -4,6 +4,7 @@ import {
   addBlog as addBlogAction,
   likeBlog as likeBlogAction,
   deleteBlog as deleteBlogAction,
+  commentBlog as commentBlogAction,
 } from '../reducers/blogsReducer'
 
 const useBlogs = () => {
@@ -15,6 +16,8 @@ const useBlogs = () => {
   const addBlog = (blog) => dispatch(addBlogAction(blog)).unwrap()
   const likeBlog = (blog) => dispatch(likeBlogAction(blog)).unwrap()
   const deleteBlog = (blog) => dispatch(deleteBlogAction(blog)).unwrap()
+  const commentBlog = (blog, comment) =>
+    dispatch(commentBlogAction({ blog, comment })).unwrap()
 
   return {
     blogs,
@@ -22,6 +25,7 @@ const useBlogs = () => {
     addBlog,
     likeBlog,
     deleteBlog,
+    commentBlog,
   }
 }
 

@@ -45,6 +45,18 @@ export const deleteBlog = createAsyncThunk(
   },
 )
 
+export const commentBlog = createAsyncThunk(
+  'blogs/commentBlog',
+  async ({ blog, comment }, { rejectWithValue }) => {
+    try {
+      const response = await blogService.comment(blog, comment)
+      return response
+    } catch (error) {
+      return rejectWithValue(error.response.data.error || error.message)
+    }
+  },
+)
+
 const blogsSlice = createSlice({
   name: 'blogs',
   initialState: {
@@ -70,6 +82,21 @@ const blogsSlice = createSlice({
         const deletedBlog = action.payload
         state.entities = state.entities.filter(
           (blog) => blog.id !== deletedBlog.id,
+        )
+      })
+      .addCase(commentBlog.fulfilled, (state, action) => {
+        const comment = action.payload
+
+        state.entities = state.entities.map((blog) =>
+          blog.id === comment.blog.id
+            ? {
+                ...blog,
+                comments: [
+                  ...blog.comments,
+                  { id: comment.id, content: comment.content },
+                ],
+              }
+            : blog,
         )
       })
   },

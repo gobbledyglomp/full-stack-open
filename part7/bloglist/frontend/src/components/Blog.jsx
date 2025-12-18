@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import Loading from './Loading'
@@ -5,6 +6,47 @@ import Loading from './Loading'
 import useBlogs from '../hooks/useBlogs'
 import useNotification from '../hooks/useNotification'
 import useLogin from '../hooks/useLogin'
+
+const Comments = ({ blog }) => {
+  const [comment, setComment] = useState('')
+  const { commentBlog } = useBlogs()
+  const { notify } = useNotification()
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    try {
+      await commentBlog(blog, comment)
+      setComment('')
+    } catch (error) {
+      notify('ERROR', error)
+    }
+  }
+
+  return (
+    <div>
+      <h3>Comments</h3>
+      {/* Send comment form */}
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={comment}
+          onChange={({ target }) => setComment(target.value)}
+        />
+        <button type="submit">Send</button>
+      </form>
+      {/* Comment list */}
+      {blog.comments.length === 0 ? (
+        <p>There is no comments</p>
+      ) : (
+        <ul>
+          {blog.comments.map((comment) => (
+            <li key={comment.id}>{comment.content}</li>
+          ))}
+        </ul>
+      )}
+    </div>
+  )
+}
 
 const Blog = ({ id }) => {
   const { blogs, likeBlog, deleteBlog } = useBlogs()
@@ -76,16 +118,7 @@ const Blog = ({ id }) => {
         <button onClick={handleDeletion}>Delete</button>
       </div>
       {/* Comments */}
-      <h3>Comments</h3>
-      {blog.comments.length === 0 ? (
-        'There is no comments'
-      ) : (
-        <ul>
-          {blog.comments.map((comment) => (
-            <li key={comment.id}>{comment.content}</li>
-          ))}
-        </ul>
-      )}
+      <Comments blog={blog} />
     </div>
   )
 }
