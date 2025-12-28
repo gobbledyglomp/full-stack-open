@@ -1,30 +1,37 @@
 import { Link } from 'react-router-dom'
+import { ListGroupItem, Badge } from 'react-bootstrap'
+
+import useBlogs from '../hooks/useBlogs'
 
 const BlogItem = ({ blog }) => {
-  const blogStyle = {
-    padding: '10px',
-    border: '2px solid #0288d1',
-    backgroundColor: '#eaf8ff',
-    borderWidth: 1,
-    marginBottom: 5,
-    maxWidth: '500px',
-  }
+  const { likeBlog } = useBlogs()
 
-  const titleStyle = {
-    display: 'flex',
+  const handleLike = async (event) => {
+    event.preventDefault()
+    try {
+      await likeBlog(blog)
+    } catch (error) {
+      notify('ERROR', error)
+    }
   }
 
   return (
-    <div style={blogStyle}>
-      <div style={titleStyle}>
-        <div>
-          <i>
-            <Link to={`/blogs/${blog.id}`}>{blog.title}</Link>
-          </i>
-          &nbsp;by {blog.author}
+    <ListGroupItem
+      as="li"
+      className="d-flex justify-content-between align-items-start"
+    >
+      <div className="ms-2 me-auto">
+        <div className="fw-bold">
+          <Link to={`/blogs/${blog.id}`} style={{ textDecoration: 'none' }}>
+            {blog.title}
+          </Link>
         </div>
+        by {blog.author}
       </div>
-    </div>
+      <Badge bg="light" text="dark" pill as="button" onClick={handleLike}>
+        {blog.likes} ❤️
+      </Badge>
+    </ListGroupItem>
   )
 }
 

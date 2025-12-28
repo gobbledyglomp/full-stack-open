@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Button, Card, Form, Container, Row } from 'react-bootstrap'
 
 import useNotification from '../hooks/useNotification'
 import useBlogs from '../hooks/useBlogs'
@@ -25,44 +26,60 @@ const CreateBlogs = () => {
   }
 
   return (
-    <div>
-      <h2>Create new</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>
-            Title:
-            <input
+    <Card className="mt-3">
+      <Card.Header as="h5" className="text-center">
+        Create new
+      </Card.Header>
+
+      <Card.Body>
+        <Form onSubmit={handleSubmit}>
+          {/* Title */}
+          <Form.Group className="mb-2" controlId="formTitle">
+            <Form.Label>Title</Form.Label>
+            <Form.Control
               type="text"
               value={title}
               onChange={({ target }) => setTitle(target.value)}
+              placeholder="Title"
+              autoComplete="Title"
             />
-          </label>
-        </div>
-        <div>
-          <label>
-            Author:
-            <input
+          </Form.Group>
+
+          {/* Author */}
+          <Form.Group className="mb-2" controlId="formAuthor">
+            <Form.Label>Author</Form.Label>
+            <Form.Control
               type="text"
               value={author}
               onChange={({ target }) => setAuthor(target.value)}
+              placeholder="Author"
+              autoComplete="Author"
             />
-          </label>
-        </div>
-        <div>
-          <label>
-            URL:
-            <input
+          </Form.Group>
+
+          {/* URL */}
+          <Form.Group className="mb-3" controlId="formUrl">
+            <Form.Label>URL</Form.Label>
+            <Form.Control
               type="text"
               value={url}
               onChange={({ target }) => setUrl(target.value)}
+              placeholder="https://example.com/"
+              autoComplete="URL"
             />
-          </label>
-        </div>
-        <div>
-          <button type="submit">Create</button>
-        </div>
-      </form>
-    </div>
+          </Form.Group>
+
+          {/* Login button */}
+          <Container fluid>
+            <Row>
+              <Button variant="primary" type="submit">
+                Create
+              </Button>
+            </Row>
+          </Container>
+        </Form>
+      </Card.Body>
+    </Card>
   )
 }
 

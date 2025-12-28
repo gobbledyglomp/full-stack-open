@@ -1,27 +1,33 @@
+import { Alert } from 'react-bootstrap'
+import { XCircle, CheckCircle } from 'react-bootstrap-icons'
+
 import useNotification from '../hooks/useNotification'
 
 const Notification = () => {
   const { notification } = useNotification()
 
-  const style = {
-    fontFamily: 'sans-serif',
-    fontWeight: '700',
-    color: notification.type === 'ERROR' ? '#d32f2f' : '#0288d1',
-    backgroundColor: notification.type === 'ERROR' ? '#fff5f4' : '#e1f5fe',
-    border: `3px solid ${
-      notification.type === 'ERROR' ? '#d32f2f' : '#0288d1'
-    }`,
-    borderRadius: '12px',
-    padding: '10px 16px',
-    marginTop: '15px',
-    display: 'inline-block',
-  }
-
   if (notification.queue === 0) {
     return null
   }
 
-  return <div style={style}>{notification.text}</div>
+  return (
+    <Alert variant={notification.type === 'ERROR' ? 'danger' : 'success'}>
+      <Alert.Heading>
+        {notification.type === 'ERROR' ? (
+          <>
+            <XCircle className="me-2" />
+            Oh snap! You got an error!
+          </>
+        ) : (
+          <>
+            <CheckCircle className="me-2" />
+            Success!
+          </>
+        )}
+      </Alert.Heading>
+      <p>{notification.text}</p>
+    </Alert>
+  )
 }
 
 export default Notification

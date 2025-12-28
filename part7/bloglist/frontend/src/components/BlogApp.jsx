@@ -27,7 +27,6 @@ const BlogApp = () => {
     <>
       <NavigationMenu />
       <Notification />
-      <h1>Blog app</h1>
 
       <Routes>
         <Route path="/blogs/:id" element={<Blog id={blogIdMatched} />} />

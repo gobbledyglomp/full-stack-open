@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Card, Button, Form, ListGroup } from 'react-bootstrap'
 
 import Loading from './Loading'
 
@@ -24,25 +25,35 @@ const Comments = ({ blog }) => {
 
   return (
     <div>
-      <h3>Comments</h3>
+      <h3 className="mt-3">Comments</h3>
       {/* Send comment form */}
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={comment}
-          onChange={({ target }) => setComment(target.value)}
-        />
-        <button type="submit">Send</button>
-      </form>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3" controlId="formComment">
+          <Form.Control
+            type="text"
+            value={comment}
+            onChange={({ target }) => setComment(target.value)}
+            placeholder="Enter comment"
+            autoComplete="Comment"
+            className="mt-3 mb-2"
+            style={{ width: '30rem' }}
+          />
+          <Button variant="primary" type="submit" className="mt-2">
+            Send
+          </Button>
+        </Form.Group>
+      </Form>
       {/* Comment list */}
       {blog.comments.length === 0 ? (
-        <p>There is no comments</p>
+        <i>There is no comments...</i>
       ) : (
-        <ul>
+        <ListGroup>
           {blog.comments.map((comment) => (
-            <li key={comment.id}>{comment.content}</li>
+            <ListGroup.Item key={comment.id} style={{ width: '30rem' }}>
+              {comment.content}
+            </ListGroup.Item>
           ))}
-        </ul>
+        </ListGroup>
       )}
     </div>
   )
@@ -97,29 +108,42 @@ const Blog = ({ id }) => {
 
   // Render
   return (
-    <div>
+    <Card className="mt-3" style={{ width: '50rem' }}>
       {/* Title */}
-      <h2>
-        <i>{blog.title}</i> by {blog.author}
-      </h2>
-      {/* URL */}
-      <div>
-        <a href={blog.url}>{blog.url}</a>
-      </div>
-      {/* Likes */}
-      <div>
-        Likes: {blog.likes}
-        <button onClick={handleLike}>❤️</button>
-      </div>
-      {/* User */}
-      <div>Added by {blog.user.name}</div>
-      {/* Delete Button */}
-      <div style={deleteButtonStyle}>
-        <button onClick={handleDeletion}>Delete</button>
-      </div>
-      {/* Comments */}
-      <Comments blog={blog} />
-    </div>
+      <Card.Header as="h3" className="text-center">
+        <i>«{blog.title}»</i> by {blog.author}
+      </Card.Header>
+
+      <Card.Body className="mt-2">
+        {/* URL */}
+        <div className="mb-2">
+          <a href={blog.url}>{blog.url}</a>
+        </div>
+        {/* Likes */}
+        <div className="mb-2">
+          <Button
+            onClick={handleLike}
+            variant="outline-dark"
+            className="border fw-bold"
+          >
+            ❤️ {blog.likes}
+          </Button>
+        </div>
+        {/* User */}
+        <div className="mb-2">Added by {blog.user.name}</div>
+        {/* Delete Button */}
+        <div style={deleteButtonStyle}>
+          <Button variant="dark" onClick={handleDeletion} className="mt-2">
+            Delete
+          </Button>
+        </div>
+      </Card.Body>
+
+      <Card.Footer className="mt-2">
+        {/* Comments */}
+        <Comments blog={blog} />
+      </Card.Footer>
+    </Card>
   )
 }
 

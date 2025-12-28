@@ -1,29 +1,43 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { Card, Table as TableComponent } from 'react-bootstrap'
 
 import Loading from './Loading'
 import useUsers from '../hooks/useUsers'
 
 const Table = ({ users }) => (
-  <table>
+  <TableComponent striped bordered hover>
     <tbody>
       <tr>
-        <td></td>
-        <td style={{ fontWeight: 'bold' }}>blogs created</td>
+        <th>User</th>
+        <th>Blogs created</th>
       </tr>
-      {users &&
+      {users && users.length > 0 ? (
         users.map((user) => (
           <tr key={user.id}>
             <td>
               <label>
-                <Link to={`/users/${user.id}`}>{user.name}</Link>
+                <Link
+                  to={`/users/${user.id}`}
+                  style={{ textDecoration: 'none' }}
+                >
+                  {user.name}
+                </Link>
               </label>
             </td>
-            <td>{user.blogs.length}</td>
+            <td>
+              {user.blogs.length} {user.blogs.length === 1 ? 'blog' : 'blogs'}
+            </td>
           </tr>
-        ))}
+        ))
+      ) : (
+        <tr>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+      )}
     </tbody>
-  </table>
+  </TableComponent>
 )
 
 const Users = () => {
@@ -34,10 +48,15 @@ const Users = () => {
   }, [])
 
   return (
-    <div>
-      <h2>Users</h2>
-      {users === null ? <Loading /> : <Table users={users} />}
-    </div>
+    <Card className="mt-3">
+      <Card.Header as="h5" className="text-center">
+        Users
+      </Card.Header>
+
+      <Card.Body className="mt-2">
+        {users === null ? <Loading /> : <Table users={users} />}
+      </Card.Body>
+    </Card>
   )
 }
 

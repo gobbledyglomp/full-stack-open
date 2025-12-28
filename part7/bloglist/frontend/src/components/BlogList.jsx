@@ -1,3 +1,5 @@
+import { ListGroup } from 'react-bootstrap'
+
 import Loading from './Loading'
 import Togglable from './Togglable'
 import CreateBlogs from './CreateBlogs'
@@ -15,12 +17,14 @@ const BlogList = () => {
       <Togglable label="Create New Blog">
         <CreateBlogs />
       </Togglable>
-      {blogs
-        .slice()
-        .sort((a, b) => b.likes - a.likes)
-        .map((blog) => (
-          <BlogItem key={blog.id} blog={blog} />
-        ))}
+      <ListGroup as="ol">
+        {blogs
+          .slice()
+          .sort((a, b) => b.likes - a.likes)
+          .map((blog) => (
+            <BlogItem key={blog.id} blog={blog} />
+          ))}
+      </ListGroup>
     </div>
   )
 }
