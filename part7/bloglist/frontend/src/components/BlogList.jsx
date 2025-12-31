@@ -13,7 +13,7 @@ const BlogList = () => {
   if (blogs === null) return <Loading />
 
   return (
-    <div>
+    <div className="w-75 mx-auto">
       <Togglable label="Create New Blog">
         <CreateBlogs />
       </Togglable>

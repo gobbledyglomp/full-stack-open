@@ -22,7 +22,7 @@ const Login = () => {
 
   return (
     <>
-      <Card className="mt-5">
+      <Card className="mt-5 w-50 mx-auto">
         <Card.Header as="h4" className="text-center">
           Log in to application
         </Card.Header>

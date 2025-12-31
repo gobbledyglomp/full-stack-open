@@ -22,10 +22,10 @@ const App = () => {
   }
 
   return (
-    <div className="container flex-column d-flex min-vh-100">
+    <div className="flex-column d-flex min-vh-100 min-vw-100">
       <NavigationMenu />
-      <Notification />
-      <div className="flex-grow-1">
+      <div className="container flex-grow-1">
+        <Notification />
         {user.username === null ? <Login /> : <BlogApp />}
       </div>
       <Footer />

@@ -24,7 +24,7 @@ const Comments = ({ blog }) => {
   }
 
   return (
-    <div>
+    <div className="mx-2 mb-2">
       <h3 className="mt-3">Comments</h3>
       {/* Send comment form */}
       <Form onSubmit={handleSubmit}>
@@ -108,7 +108,7 @@ const Blog = ({ id }) => {
 
   // Render
   return (
-    <Card className="mt-3" style={{ width: '50rem' }}>
+    <Card className="mt-3 mx-auto" style={{ width: '50rem' }}>
       {/* Title */}
       <Card.Header as="h3" className="text-center">
         <i>«{blog.title}»</i> by {blog.author}

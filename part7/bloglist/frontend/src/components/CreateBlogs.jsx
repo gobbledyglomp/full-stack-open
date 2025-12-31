@@ -26,7 +26,7 @@ const CreateBlogs = () => {
   }
 
   return (
-    <Card className="mt-3">
+    <Card className="mt-3 w-75 mx-auto">
       <Card.Header as="h5" className="text-center">
         Create new
       </Card.Header>

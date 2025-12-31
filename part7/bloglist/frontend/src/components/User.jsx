@@ -18,7 +18,7 @@ const User = ({ id }) => {
   const user = users.find((user) => user.id === id)
 
   return (
-    <Card className="mt-3" style={{ width: '50rem' }}>
+    <Card className="mt-3 mx-auto w-75">
       <Card.Body className="mt-2">
         <h3>{user.name}'s added blogs:</h3>
         <ListGroup numbered className="mt-3">

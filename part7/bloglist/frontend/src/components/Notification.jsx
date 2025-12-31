@@ -11,7 +11,10 @@ const Notification = () => {
   }
 
   return (
-    <Alert variant={notification.type === 'ERROR' ? 'danger' : 'success'}>
+    <Alert
+      variant={notification.type === 'ERROR' ? 'danger' : 'success'}
+      className="mt-3 w-75 mx-auto"
+    >
       <Alert.Heading>
         {notification.type === 'ERROR' ? (
           <>
