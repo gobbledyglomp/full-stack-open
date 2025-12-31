@@ -1,9 +1,7 @@
 import { useEffect } from 'react'
 import { Routes, Route, useMatch } from 'react-router-dom'
 
-import Notification from './Notification'
 import BlogList from './BlogList'
-import NavigationMenu from './NavigationMenu'
 import Users from './Users'
 import User from './User'
 import Blog from './Blog'
@@ -25,9 +23,6 @@ const BlogApp = () => {
 
   return (
     <>
-      <NavigationMenu />
-      <Notification />
-
       <Routes>
         <Route path="/blogs/:id" element={<Blog id={blogIdMatched} />} />
         <Route path="/users/:id" element={<User id={userIdMatched} />} />

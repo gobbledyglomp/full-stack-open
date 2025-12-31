@@ -12,7 +12,7 @@ const Togglable = ({ label, children }) => {
   const showWhenInvisible = { display: !visible ? '' : 'none' }
 
   return (
-    <div style={{ marginBottom: '20px' }}>
+    <div className="mb-4">
       <div style={showWhenVisible}>
         {children}
         <Button onClick={toggleVisibility} variant="dark" className="mt-3">

@@ -17,10 +17,7 @@ const Table = ({ users }) => (
           <tr key={user.id}>
             <td>
               <label>
-                <Link
-                  to={`/users/${user.id}`}
-                  style={{ textDecoration: 'none' }}
-                >
+                <Link to={`/users/${user.id}`} className="text-decoration-none">
                   {user.name}
                 </Link>
               </label>

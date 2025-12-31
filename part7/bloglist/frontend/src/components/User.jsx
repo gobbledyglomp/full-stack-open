@@ -29,7 +29,7 @@ const User = ({ id }) => {
               </ListGroup.Item>
             ))
           ) : (
-            <i style={{ fontSize: '1.04rem' }}>There is nothing here...</i>
+            <i>There is nothing here...</i>
           )}
         </ListGroup>
       </Card.Body>

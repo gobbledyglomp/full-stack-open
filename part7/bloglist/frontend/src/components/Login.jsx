@@ -1,9 +1,6 @@
 import { useState } from 'react'
 import { Form, Button, Container, Card, Row } from 'react-bootstrap'
 
-import Notification from './Notification'
-import NavigationMenu from './NavigationMenu'
-
 import useNotification from '../hooks/useNotification'
 import useLogin from '../hooks/useLogin'
 
@@ -25,8 +22,6 @@ const Login = () => {
 
   return (
     <>
-      <NavigationMenu />
-      <Notification />
       <Card className="mt-5">
         <Card.Header as="h4" className="text-center">
           Log in to application

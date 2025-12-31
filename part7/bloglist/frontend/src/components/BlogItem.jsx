@@ -22,7 +22,7 @@ const BlogItem = ({ blog }) => {
     >
       <div className="ms-2 me-auto">
         <div className="fw-bold">
-          <Link to={`/blogs/${blog.id}`} style={{ textDecoration: 'none' }}>
+          <Link to={`/blogs/${blog.id}`} className="text-decoration-none">
             {blog.title}
           </Link>
         </div>

@@ -18,7 +18,7 @@ const NavigationMenu = () => {
             height="30"
             className="d-inline-block align-top"
           />{' '}
-          <Link to="/" style={{ textDecoration: 'none', color: '#000000' }}>
+          <Link to="/" className="text-decoration-none text-black">
             Blog app
           </Link>
         </Navbar.Brand>
@@ -34,13 +34,13 @@ const NavigationMenu = () => {
         {/* Content end */}
         {user.username === null ? (
           <Navbar.Text className="justify-content-end">
-            <div style={{ color: '#000000' }}>User must be logged in</div>
+            <div className="text-black">User must be logged in</div>
           </Navbar.Text>
         ) : (
           <>
             {/* Signed in as */}
             <Navbar.Text className="justify-content-end">
-              <div style={{ color: '#000000' }}>Signed in as: {user.name}</div>
+              <div className="text-black">Signed in as: {user.name}</div>
             </Navbar.Text>
             {/* Logout button */}
             <Nav className="justify-content-end">
