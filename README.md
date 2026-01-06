@@ -27,6 +27,16 @@
     <a href="https://playwright.dev/"><img src="https://img.shields.io/badge/Playwright-45ba4b?style=for-the-badge&logo=Playwright&logoColor=white" /></a>
     <a href="https://redux.js.org/"><img src="https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white" /></a>
     <a href="https://tanstack.com/query/v4/docs/framework/react/overview"><img src="https://img.shields.io/badge/React_Query-FF4154?style=for-the-badge&logo=reactquery&logoColor=white" /></a>
+    <a href="https://reactrouter.com/"><img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white" /></a>
+    <a href="https://webpack.js.org/"><img src="https://img.shields.io/badge/Webpack-8DD6F9?style=for-the-badge&logo=Webpack&logoColor=white" /></a>
+</p>
+
+<h2>
+    Certificate
+</h2>
+
+<p align="center">
+  <img src="images/certificate-fullstack.png" width="75%" />
 </p>
 
 <h2>
@@ -42,6 +52,11 @@
 </h2>
 
 <h3>
+    <p>
+        <a href="https://github.com/gobbledyglomp/full-stack-open/tree/main/part8">
+            • Part 8: GraphQL
+        </a>
+    </p>
     <p>
         <a href="https://github.com/gobbledyglomp/full-stack-open/tree/main/part7">
             • Part 7: React router, custom hooks, styling app with CSS and webpack
