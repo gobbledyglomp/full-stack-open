@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const express = require('express')
+const path = require('path')
 
 const middleware = require('./utils/middleware')
 const logger = require('./utils/logger')
@@ -37,6 +38,7 @@ if (config.ENV !== 'test') {
   app.use(middleware.requestLogger)
 }
 
+app.use(express.static('dist'))
 app.use('/api/blogs', blogsRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
@@ -44,6 +46,13 @@ app.use('/api/login', loginRouter)
 if (config.ENV === 'test') {
   app.use('/api/testing', testingRouter)
 }
+
+app.use((req, res, next) => {
+  if (req.method === 'GET' && !req.path.startsWith('/api')) {
+    return res.sendFile(path.join(__dirname, 'dist', 'index.html'))
+  }
+  next()
+})
 
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
